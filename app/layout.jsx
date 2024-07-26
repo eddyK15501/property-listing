@@ -1,16 +1,18 @@
 import '@/assets/styles/globals.css';
+import Navbar from '../components/Navbar';
 
 export const metadata = {
-    title: 'PropertyListing | Find A Rental Property',
-    description: 'Find your dream rental property',
-    keywords: 'rental, find rentals, find properties'
-}
+  title: 'PropertyListing | Find A Rental Property',
+  description: 'Find your dream rental property',
+  keywords: 'rental, find rentals, find properties',
+};
 
 const MainLayout = ({ children }) => {
   return (
     <html lang='en'>
       <body>
-        <div>{children}</div>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
