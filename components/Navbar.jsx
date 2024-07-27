@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className='bg-blue-700 border-b border-blue-500'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='relative flex h-20 items-center justify-between'>
-          <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
+          <div className='absolute inset-y-0 left-0 flex items-center lg:hidden'>
             <button
               type='button'
               id='mobile-dropdown-button'
@@ -36,18 +36,18 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
+          <div className='flex flex-1 items-center justify-center lg:items-stretch lg:justify-start'>
             <Link className='flex flex-shrink-0 items-center' href='/'>
               <Image
                 className='h-10 w-auto'
                 src={logo}
                 alt='Property-Listing'
               />
-              <span className='hidden md:block text-white text-2xl font-bold ml-2'>
+              <span className='hidden lg:block text-white text-2xl font-bold ml-2'>
                 PropertyListing
               </span>
             </Link>
-            <div className='hidden md:ml-6 md:block'>
+            <div className='hidden lg:ml-6 lg:block'>
               <div className='flex space-x-2'>
                 <Link
                   href='/'
@@ -70,7 +70,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className='hidden md:block md:ml-6'>
+          <div className='hidden lg:block lg:ml-6'>
             <div className='flex items-center'>
               <button className='flex items-center text-white bg-none hover:text-gray-300 rounded-md px-3 py-2'>
                 <FaGoogle className='text-white mr-1 p-1.5 rounded-full' size={27} />
@@ -78,7 +78,7 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          <div className='absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0'>
+          <div className='absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0'>
             <Link href='/messages' className='relative group'>
               <button
                 type='button'
