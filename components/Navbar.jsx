@@ -8,12 +8,18 @@ import { FaGoogle } from 'react-icons/fa6';
 
 const Navbar = () => {
   const profileMenuRef = useRef(null);
+  const profileBtnRef = useRef(null);
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleOuterClick = (e) => {
-    if (profileMenuRef.current && !profileMenuRef.current.contains(e.target)) {
+    if (
+      profileMenuRef.current &&
+      !profileMenuRef.current.contains(e.target) &&
+      profileBtnRef.current &&
+      !profileBtnRef.current.contains(e.target)
+    ) {
       setProfileMenu(false);
     }
   };
@@ -21,8 +27,6 @@ const Navbar = () => {
   useEffect(() => {
     if (profileMenu) {
       document.addEventListener('mousedown', handleOuterClick);
-    } else {
-      document.removeEventListener('mousedown', handleOuterClick);
     }
 
     return () => {
@@ -133,6 +137,7 @@ const Navbar = () => {
             <div className='relative ml-3'>
               <div>
                 <button
+                  ref={profileBtnRef}
                   type='button'
                   className='relative flex rounded-full bg-none text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
                   id='user-menu-button'
