@@ -228,10 +228,12 @@ const Navbar = () => {
             )}
           </div>
           <div className='mt-2 mb-5 ml-3'>
-            <button className='flex items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
-              <FaGoogle className='mr-2' />
-              <span>Login or Register</span>
-            </button>
+            {!isLoggedIn && (
+              <button className='flex items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
+                <FaGoogle className='mr-2' />
+                <span>Login or Register</span>
+              </button>
+            )}
           </div>
         </div>
       )}
