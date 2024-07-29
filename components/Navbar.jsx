@@ -12,6 +12,7 @@ const Navbar = () => {
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOuterClick = (e) => {
     if (
@@ -90,12 +91,14 @@ const Navbar = () => {
                 >
                   Properties
                 </Link>
-                <Link
-                  href='/properties/add'
-                  className='text-white hover:text-gray-300 rounded-md px-3 py-2'
-                >
-                  Add Property
-                </Link>
+                {isLoggedIn && (
+                  <Link
+                    href='/properties/add'
+                    className='text-white hover:text-gray-300 rounded-md px-3 py-2'
+                  >
+                    Add Property
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -211,12 +214,14 @@ const Navbar = () => {
             >
               Properties
             </Link>
-            <Link
-              href='/properties/add'
-              className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
-            >
-              Add Property
-            </Link>
+            {isLoggedIn && (
+              <Link
+                href='/properties/add'
+                className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
+              >
+                Add Property
+              </Link>
+            )}
           </div>
           <div className='mt-2 mb-5 ml-3'>
             <button className='flex items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
