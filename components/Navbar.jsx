@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
@@ -7,8 +7,28 @@ import defaultProfile from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa6';
 
 const Navbar = () => {
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const profileMenuRef = useRef(null);
+
   const [profileMenu, setProfileMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  const handleOuterClick = (e) => {
+    if (profileMenuRef.current && !profileMenuRef.current.contains(e.target)) {
+      setProfileMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    if (profileMenu) {
+      document.addEventListener('mousedown', handleOuterClick);
+    } else {
+      document.removeEventListener('mousedown', handleOuterClick);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOuterClick);
+    };
+  }, [profileMenu]);
 
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
@@ -131,6 +151,7 @@ const Navbar = () => {
               </div>
               {profileMenu && (
                 <div
+                  ref={profileMenuRef}
                   id='user-menu'
                   className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
                   role='menu'
