@@ -13,10 +13,10 @@ const Footer = () => {
           <div className='mb-4 md:mb-0'>
             <Image src={logo} alt='Logo' className='h-8 w-auto' />
           </div>
-          <div className='font-medium mb-4 ml-3 md:mb-0 md:ml-5'>
-            <ul className='flex space-x-4'>
+          <div className='font-medium mb-4 ml-3 md:mb-0 md:ml-6'>
+            <ul className='flex space-x-5'>
               <li>
-                <Link href='/properties'>Properties</Link>
+                <Link href='/properties'>View Properties</Link>
               </li>
               <li>
                 <Link href='/'>Terms of Service</Link>
