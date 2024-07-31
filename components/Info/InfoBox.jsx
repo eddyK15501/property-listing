@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const InfoBox = ({ children, heading, btnInfo, bgColor = 'bg-blue-100' }) => {
   return (
@@ -7,12 +8,12 @@ const InfoBox = ({ children, heading, btnInfo, bgColor = 'bg-blue-100' }) => {
       <p className='mt-2 mb-4'>
         {children}
       </p>
-      <a
+      <Link
         href={btnInfo.link}
         className='inline-block bg-blue-500 text-white w-44 mt-2 rounded-lg px-4 py-2 hover:bg-blue-400'
       >
         {btnInfo.text}
-      </a>
+      </Link>
     </div>
   );
 };
