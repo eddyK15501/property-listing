@@ -1,5 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  FaBed,
+  FaBath,
+  FaRulerCombined,
+  FaMoneyBill,
+  FaMapMarker,
+} from 'react-icons/fa';
 
 const PropertyCard = ({ property }) => {
   return (
@@ -24,16 +31,17 @@ const PropertyCard = ({ property }) => {
         <div className='flex justify-center gap-4 text-black mb-4'>
           <p>
             <i className='fa-solid fa-bed'></i>
-            {property.beds}
+            <FaBed className='md:hidden lg:inline' /> {property.beds}
             <span className='font-medium md:hidden lg:inline'> Beds</span>
           </p>
           <p>
             <i className='fa-solid fa-bath'></i>
-            {property.baths}
+            <FaBath className='md:hidden lg:inline' /> {property.baths}
             <span className='font-medium md:hidden lg:inline'> Baths</span>
           </p>
           <p>
             <i className='fa-solid fa-ruler-combined'></i>
+            <FaRulerCombined className='md:hidden lg:inline' />{' '}
             {property.square_feet}
             <span className='font-medium md:hidden lg:inline'> sqft</span>
           </p>
@@ -41,10 +49,10 @@ const PropertyCard = ({ property }) => {
 
         <div className='flex justify-center gap-4 text-green-900 text-sm mb-4'>
           <p>
-            <i className='fa-solid fa-money-bill'></i> Weekly
+            <FaMoneyBill className='md:hidden lg:inline' /> Weekly
           </p>
           <p>
-            <i className='fa-solid fa-money-bill'></i> Monthly
+            <FaMoneyBill className='md:hidden lg:inline' /> Monthly
           </p>
         </div>
 
