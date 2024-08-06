@@ -17,7 +17,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         '70/28': '70% 28%',
-      }
+      },
+      screens: {
+        'xs': '471px',
+      },
     },
   },
   plugins: [],
