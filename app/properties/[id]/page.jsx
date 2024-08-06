@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
+import PropertyDetails from '@/components/Property/PropertyDetails';
 import PropertyBanner from '@/components/Property/PropertyBanner';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 
@@ -23,7 +24,9 @@ const PropertyDetailsPage = async ({ params }) => {
       </section>
       <section className='bg-blue-50'>
         <div className='container m-auto py-10 px-6'>
-          <div className='grid grid-cols-1 md:grid-cols-70/28 w-full gap-6'></div>
+          <div className='grid grid-cols-1 md:grid-cols-70/28 w-full gap-6'>
+            <PropertyDetails property={property} />
+          </div>
         </div>
       </section>
     </>
