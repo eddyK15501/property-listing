@@ -1,5 +1,5 @@
 'use client';
-import PropertyCard from '@/components/PropertyCard';
+import PropertyCard from '@/components/Property/PropertyCard';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
 

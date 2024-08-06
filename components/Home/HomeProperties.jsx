@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import PropertyCard from '../PropertyCard';
+import PropertyCard from '../Property/PropertyCard';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
 
@@ -9,8 +9,6 @@ const HomeProperties = async () => {
     .sort({ createdAt: -1 })
     .limit(3)
     .lean();
-
-  console.log(mostRecent);
 
   return (
     <>
