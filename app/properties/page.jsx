@@ -1,12 +1,11 @@
 'use client';
-import { useEffect } from 'react';
-import properties from '@/properties/properties.json';
 import PropertyCard from '@/components/PropertyCard';
+import connectDB from '@/config/connection';
+import Property from '@/models/Property';
 
-const PropertiesPage = () => {
-  useEffect(() => {
-    console.log(properties);
-  });
+const PropertiesPage = async () => {
+  await connectDB();
+  const properties = await Property.find({}).lean();
 
   return (
     <section className='px-4 py-6'>
