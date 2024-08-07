@@ -1,6 +1,13 @@
-export const GET = () => {
-  return new Response(
-    JSON.stringify({ message: 'GET request at api/properties' }),
-    { status: 200 }
-  );
+import connectDB from '@/config/connection';
+import Property from '@/models/Property';
+
+export const GET = async () => {
+  try {
+    await connectDB();
+    const properties = await Property.find({});
+
+    return new Response(properties, { status: 200 })
+  } catch (error) {
+    return new Response('Error', { status: 500 });
+  }
 };
