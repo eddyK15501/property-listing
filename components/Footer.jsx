@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         <div>
           <p className='text-sm text-gray-500 mt-2 md:mt-0'>
-            &copy; {currentYear} PropertyListing. All rights reserved.
+            &copy; {currentYear} PropertyListing | All Rights Reserved | Powered by <span className='text-gray-400'>Next.js</span>
           </p>
         </div>
       </div>
