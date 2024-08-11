@@ -5,13 +5,10 @@ import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import defaultProfile from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa6';
-import { useSession, getProviders } from 'next-auth/react';
+import { useSession, getProviders, signIn } from 'next-auth/react';
 
 const Navbar = () => {
   const { data: session, status, update } = useSession();
-  console.log(session);
-  console.log(status);
-  console.log(update);
 
   const profileMenuRef = useRef(null);
   const profileBtnRef = useRef(null);
@@ -39,6 +36,10 @@ const Navbar = () => {
 
     setAuthProviders();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("Provider set:", providers);
+  // }, [providers])
 
   useEffect(() => {
     if (profileMenu) {
@@ -120,10 +121,17 @@ const Navbar = () => {
           {!session && (
             <div className='hidden lg:block lg:ml-6'>
               <div className='flex items-center'>
-                <button className='flex items-center text-white hover:bg-blue-500 hover:transition rounded-md px-3 py-2'>
-                  <FaGoogle className='text-white mr-2' />
-                  <span>Login or Register</span>
-                </button>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <button
+                      key={provider.name}
+                      onClick={() => signIn(provider.id)}
+                      className='flex items-center text-white hover:bg-blue-500 hover:transition rounded-md px-3 py-2'
+                    >
+                      <FaGoogle className='text-white mr-2' />
+                      <span>Login or Register</span>
+                    </button>
+                  ))}
               </div>
             </div>
           )}
