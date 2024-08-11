@@ -5,14 +5,16 @@ import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import defaultProfile from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa6';
+import { useSession } from 'next-auth/react';
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   const profileMenuRef = useRef(null);
   const profileBtnRef = useRef(null);
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOuterClick = (e) => {
     if (
@@ -91,7 +93,7 @@ const Navbar = () => {
                 >
                   Properties
                 </Link>
-                {isLoggedIn && (
+                {session && (
                   <Link
                     href='/properties/add'
                     className='text-white hover:text-gray-300 rounded-md px-3 py-2'
@@ -102,7 +104,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          {!isLoggedIn && (
+          {!session && (
             <div className='hidden lg:block lg:ml-6'>
               <div className='flex items-center'>
                 <button className='flex items-center text-white hover:bg-blue-500 hover:transition rounded-md px-3 py-2'>
@@ -112,7 +114,7 @@ const Navbar = () => {
               </div>
             </div>
           )}
-          {isLoggedIn && (
+          {session && (
             <div className='absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0'>
               <Link href='/messages' className='relative group'>
                 <button
@@ -218,7 +220,7 @@ const Navbar = () => {
             >
               Properties
             </Link>
-            {isLoggedIn && (
+            {session && (
               <Link
                 href='/properties/add'
                 className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
@@ -228,7 +230,7 @@ const Navbar = () => {
             )}
           </div>
           <div className='mt-2 mb-5 ml-3'>
-            {!isLoggedIn && (
+            {!session && (
               <button className='flex items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
                 <FaGoogle className='mr-2' />
                 <span>Login or Register</span>
