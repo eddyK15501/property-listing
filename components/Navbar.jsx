@@ -5,16 +5,20 @@ import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import defaultProfile from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa6';
-import { useSession } from 'next-auth/react';
+import { useSession, getProviders } from 'next-auth/react';
 
 const Navbar = () => {
-  const { data: session } = useSession();
+  const { data: session, status, update } = useSession();
+  console.log(session);
+  console.log(status);
+  console.log(update);
 
   const profileMenuRef = useRef(null);
   const profileBtnRef = useRef(null);
 
   const [profileMenu, setProfileMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [providers, setProviders] = useState(null);
 
   const handleOuterClick = (e) => {
     if (
@@ -26,6 +30,15 @@ const Navbar = () => {
       setProfileMenu(false);
     }
   };
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+
+    setAuthProviders();
+  }, []);
 
   useEffect(() => {
     if (profileMenu) {
@@ -207,7 +220,7 @@ const Navbar = () => {
       </div>
       {mobileMenu && (
         <div id='mobile-menu'>
-          <div className='space-y-1 px-2 pb-3 pt-2'>
+          <div className='text-center space-y-1 px-2 pb-3 pt-2'>
             <Link
               href='/'
               className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
@@ -223,7 +236,7 @@ const Navbar = () => {
             {session && (
               <Link
                 href='/properties/add'
-                className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
+                className='mx-auto text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
               >
                 Add Property
               </Link>
@@ -231,7 +244,7 @@ const Navbar = () => {
           </div>
           <div className='mt-2 mb-5 ml-3'>
             {!session && (
-              <button className='flex items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
+              <button className='flex mx-auto items-center text-white bg-blue-500 hover:bg-blue-400 hover:text-white hover:transition rounded-md px-3 py-2'>
                 <FaGoogle className='mr-2' />
                 <span>Login or Register</span>
               </button>
