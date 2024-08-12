@@ -9,6 +9,7 @@ import { useSession, getProviders, signIn } from 'next-auth/react';
 
 const Navbar = () => {
   const { data: session, status, update } = useSession();
+  console.log(session);
 
   const profileMenuRef = useRef(null);
   const profileBtnRef = useRef(null);
