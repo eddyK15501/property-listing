@@ -21,6 +21,8 @@ export const authOptions = {
       await connectDB();
       const getUser = await User.findOne({ email: profile.email });
 
+      // console.log(profile);
+
       if (!getUser) {
         const username = profile.name.slice(0, 20);
         await User.create({
@@ -32,6 +34,12 @@ export const authOptions = {
 
       return true;
     },
-    async session({ session }) {},
+    async session({ session, user, token }) {
+      // console.log(session);
+      const getUser = await User.findOne({ email: session.user.email });
+      session.user.id = getUser._id.toString();
+
+      return session;
+    },
   },
 };
