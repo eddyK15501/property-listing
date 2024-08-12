@@ -5,11 +5,11 @@ import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import defaultProfile from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa6';
-import { useSession, getProviders, signIn } from 'next-auth/react';
+import { useSession, getProviders, signIn, signOut } from 'next-auth/react';
 
 const Navbar = () => {
   const { data: session, status, update } = useSession();
-  console.log(session);
+  const profileImg = session?.user?.image;
 
   const profileMenuRef = useRef(null);
   const profileBtnRef = useRef(null);
@@ -37,10 +37,6 @@ const Navbar = () => {
 
     setAuthProviders();
   }, []);
-
-  // useEffect(() => {
-  //   console.log("Provider set:", providers);
-  // }, [providers])
 
   useEffect(() => {
     if (profileMenu) {
@@ -179,8 +175,10 @@ const Navbar = () => {
                     <span className='sr-only'>Open user menu</span>
                     <Image
                       className='h-8 w-8 rounded-full'
-                      src={defaultProfile}
-                      alt='default-profile-icon'
+                      src={profileImg || defaultProfile}
+                      alt='profile-img'
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>
@@ -213,10 +211,14 @@ const Navbar = () => {
                       Saved Properties
                     </Link>
                     <button
-                      className='block px-4 py-2 text-sm text-gray-700'
+                      className='w-full text-start block px-4 py-2 text-sm text-gray-700'
                       role='menuitem'
                       tabIndex='-1'
                       id='user-menu-item-2'
+                      onClick={() => {
+                        setProfileMenu(false);
+                        signOut();
+                      }}
                     >
                       Sign Out
                     </button>
