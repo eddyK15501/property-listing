@@ -1,8 +1,9 @@
 import React from 'react';
+import { addProperty } from '@/app/actions/addProperty';
 
 const PropertyAddForm = () => {
   return (
-    <form>
+    <form action={addProperty}>
       <h2 className='text-3xl text-center font-bold mb-6'>Add Property</h2>
       <div className='mb-4'>
         <label htmlFor='type' className='block text-gray-700 font-bold mb-2'>
@@ -340,7 +341,7 @@ const PropertyAddForm = () => {
         <input
           type='text'
           id='seller_name'
-          name='seller_info.name.'
+          name='seller.name'
           className='border rounded w-full py-2 px-3'
           placeholder='Name'
         />
@@ -355,7 +356,7 @@ const PropertyAddForm = () => {
         <input
           type='email'
           id='seller_email'
-          name='seller_info.email'
+          name='seller.email'
           className='border rounded w-full py-2 px-3'
           placeholder='Email address'
           required
@@ -371,7 +372,7 @@ const PropertyAddForm = () => {
         <input
           type='tel'
           id='seller_phone'
-          name='seller_info.phone'
+          name='seller.phone'
           className='border rounded w-full py-2 px-3'
           placeholder='Phone'
         />
