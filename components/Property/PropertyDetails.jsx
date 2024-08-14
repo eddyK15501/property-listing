@@ -51,17 +51,17 @@ const PropertyDetails = ({ property }) => {
           <p>
             <FaBed className='inline-block mr-2' />
             <span className='font-semibold'>{property.beds}</span>
-            <span className='hidden sm:inline'>Beds</span>
+            <span className='hidden sm:inline'>{' '}Beds</span>
           </p>
           <p>
             <FaBath className='inline-block mr-2' />
             <span className='font-semibold'>{property.baths}</span>
-            <span className='hidden sm:inline'>Baths</span>
+            <span className='hidden sm:inline'>{' '}Baths</span>
           </p>
           <p>
             <FaRulerCombined className='inline-block mr-2' />
             <span className='font-semibold'>{property.square_feet}</span>
-            <span className='hidden sm:inline'>sqft</span>
+            <span className='hidden sm:inline'>{' '}sqft</span>
           </p>
         </div>
         <p className='text-gray-500 mb-4'>{property.description}</p>

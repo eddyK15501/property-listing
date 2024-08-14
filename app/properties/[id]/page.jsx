@@ -3,6 +3,7 @@ import connectDB from '@/config/connection';
 import Property from '@/models/Property';
 import PropertyDetails from '@/components/Property/PropertyDetails';
 import PropertyBanner from '@/components/Property/PropertyBanner';
+import PropertyImages from '@/components/Property/PropertyImages';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 
 const PropertyDetailsPage = async ({ params }) => {
@@ -29,6 +30,7 @@ const PropertyDetailsPage = async ({ params }) => {
           </div>
         </div>
       </section>
+      <PropertyImages images={property.images} />
     </>
   );
 };
