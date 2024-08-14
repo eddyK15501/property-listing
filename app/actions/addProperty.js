@@ -4,6 +4,7 @@ import Property from '@/models/Property';
 import { sessionUser } from '@/utils/sessionUser';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import cloudinary from '@/config/cloudinary';
 
 export async function addProperty(formData) {
   await connectDB();
@@ -17,10 +18,7 @@ export async function addProperty(formData) {
   const { userId } = getSessionUser;
 
   const amenities = formData.getAll('amenities');
-  const images = formData
-    .getAll('images')
-    .filter((img) => img.name !== '')
-    .map((img) => img.name);
+  const images = formData.getAll('images').filter((img) => img.name !== '');
 
   const propData = {
     owner: userId,
@@ -47,8 +45,35 @@ export async function addProperty(formData) {
       email: formData.get('seller.email'),
       phone: formData.get('seller.phone'),
     },
-    images,
   };
+
+  const imageUrls = [];
+
+  for (const imgFile of images) {
+    // Turn individual image files into binary data, using .arrayBuffer()
+    const imgBuffer = await imgFile.arrayBuffer();
+    // Turn the binary data into uint8 array
+    const uint8Arr = new Uint8Array(imgBuffer);
+    // Convert uint8 array into a standard JavaScript array
+    const imgArray = Array.from(uint8Arr);
+    // Convert the standard JavaScript array into a Buffer for binary data manipulation
+    const imageData = Buffer.from(imgArray);
+
+    // Convert Buffer to base64
+    const imgBase64 = imageData.toString('base64');
+
+    // Request to Cloudinary
+    const response = await cloudinary.uploader.upload(
+      `data:image/png;base64,${imgBase64}`,
+      {
+        folder: 'property',
+      }
+    );
+
+    imageUrls.push(response.secure_url);
+  }
+
+  propData.images = imageUrls;
 
   const newProperty = new Property(propData);
   await newProperty.save();
