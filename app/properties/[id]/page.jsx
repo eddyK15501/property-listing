@@ -5,10 +5,20 @@ import PropertyDetails from '@/components/Property/PropertyDetails';
 import PropertyBanner from '@/components/Property/PropertyBanner';
 import PropertyImages from '@/components/Property/PropertyImages';
 import { FaArrowCircleLeft } from 'react-icons/fa';
+import convertToSerializable from '@/utils/convert';
 
 const PropertyDetailsPage = async ({ params }) => {
   await connectDB();
-  const property = await Property.findById(params.id).lean();
+  const leanProperty = await Property.findById(params.id).lean();
+  const property = convertToSerializable(leanProperty);
+
+  if (!property) {
+    return (
+      <h1 className='font-bold mt-10 text-center text-2xl'>
+        Property Not Found
+      </h1>
+    );
+  }
 
   return (
     <>
