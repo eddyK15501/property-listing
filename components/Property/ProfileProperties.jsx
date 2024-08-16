@@ -2,20 +2,25 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 import { deleteProperty } from '@/app/actions/deleteProperty';
 
 const ProfileProperties = ({ userProperties }) => {
   const [properties, setProperties] = useState(userProperties);
 
   const handleDelete = async (id) => {
-    const confirmed = window.confirm('Are you sure you want to delete this property?');
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this property?'
+    );
     if (!confirmed) return;
 
     await deleteProperty(id);
 
-    const updatedProperties = properties.filter(prop => prop._id !== id);
+    const updatedProperties = properties.filter((prop) => prop._id !== id);
     setProperties(updatedProperties);
-  }
+
+    toast.success('Property Deleted');
+  };
 
   return properties.map((property) => (
     <div key={property._id} className='mb-10'>
@@ -31,15 +36,18 @@ const ProfileProperties = ({ userProperties }) => {
       <div className='flex justify-center md:justify-between items-center flex-wrap'>
         <div className='mt-2'>
           <p className='text-lg font-semibold'>{property.name}</p>
-          <p className='text-gray-600'>{property.location.street}, {property.location.city} {property.location.state}</p>
+          <p className='text-gray-600'>
+            {property.location.street}, {property.location.city}{' '}
+            {property.location.state}
+          </p>
         </div>
         <div className='mt-2'>
-          <a
-            href='/add-property.html'
+          <Link
+            href={`/properties/edit/${property._id}`}
             className='inline-block w-20 text-center bg-blue-500 text-white px-3 py-2 rounded-md mr-2 hover:bg-blue-600'
           >
             Edit
-          </a>
+          </Link>
           <button
             className='inline-block w-20 text-center bg-rose-500 text-white px-3 py-2 rounded-md hover:bg-rose-600'
             type='button'
