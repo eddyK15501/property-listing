@@ -1,6 +1,7 @@
 'use server';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
+import cloudinary from '@/config/cloudinary';
 import { sessionUser } from '@/utils/sessionUser';
 import { revalidatePath } from 'next/cache';
 
@@ -24,5 +25,19 @@ export async function deleteProperty(propertyId) {
     throw new Error('Unauthorized');
   }
 
+  // Delete images from Cloudinary
+  const cloudinaryImgIds = property.images.map((url) => {
+    const parts = url.split('/');
+    return parts.at(-1).split('.').at(0);
+  });
+
+  if (cloudinaryImgIds.length > 0) {
+    for (let id of cloudinaryImageIds) {
+      await cloudinary.uploader.destroy(`property/${id}`);
+    }
+  }
+
   await property.deleteOne();
+
+  revalidatePath('/');
 }
