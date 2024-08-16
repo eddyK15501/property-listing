@@ -4,6 +4,7 @@ import Property from '@/models/Property';
 import { sessionUser } from '@/utils/sessionUser';
 import defaultProfile from '@/assets/images/profile.png';
 import ProfileProperties from '@/components/Property/ProfileProperties';
+import convertToSerializable from '@/utils/convert';
 
 const ProfilePage = async () => {
   await connectDB();
@@ -18,6 +19,10 @@ const ProfilePage = async () => {
 
   const properties = await Property.find({ owner: userId }).lean();
   console.log(properties);
+
+  // Convert properties data to be passed from "this" Server component, down to "child" Client component
+  const convertedProperties = properties.map(convertToSerializable);
+  console.log(convertedProperties);
 
   return (
     <section className='bg-blue-50'>
@@ -44,7 +49,7 @@ const ProfilePage = async () => {
             </div>
             <div className='md:w-3/4 md:pl-4'>
               <h2 className='text-xl font-semibold mb-4'>Listings:</h2>
-              <ProfileProperties userProperties={properties} />
+              <ProfileProperties userProperties={convertedProperties} />
             </div>
           </div>
         </div>
