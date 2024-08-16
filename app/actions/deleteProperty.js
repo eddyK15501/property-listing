@@ -32,7 +32,7 @@ export async function deleteProperty(propertyId) {
   });
 
   if (cloudinaryImgIds.length > 0) {
-    for (let id of cloudinaryImageIds) {
+    for (let id of cloudinaryImgIds) {
       await cloudinary.uploader.destroy(`property/${id}`);
     }
   }
