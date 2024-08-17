@@ -9,7 +9,7 @@ const PropertyMap = ({ property }) => {
   const [longitude, setLongitude] = useState(null);
 
   setDefaults({
-    key: process.env.GOOGLE_GEOCODING_API_KEY,
+    key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
     language: 'en',
     region: 'us',
   });
@@ -20,8 +20,15 @@ const PropertyMap = ({ property }) => {
         const response = await fromAddress(
           `${property.location.street} ${property.location.city} ${property.location.state} ${property.location.zipcode}`
         );
-        
+
+        if (response.results.length === 0) {
+          setError(true);
+          return;
+        }
+
         console.log(response);
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
       } catch (err) {
         console.log(err);
         setError(true);
