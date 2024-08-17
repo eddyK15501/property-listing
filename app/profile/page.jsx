@@ -18,11 +18,11 @@ const ProfilePage = async () => {
   }
 
   const properties = await Property.find({ owner: userId }).lean();
-  console.log(properties);
+  // console.log(properties);
 
   // Convert properties data to be passed from "this" Server component, down to "child" Client component
   const convertedProperties = properties.map(convertToSerializable);
-  console.log(convertedProperties);
+  // console.log(convertedProperties);
 
   return (
     <section className='bg-blue-50'>
