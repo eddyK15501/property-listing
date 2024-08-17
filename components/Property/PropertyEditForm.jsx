@@ -1,8 +1,11 @@
-import React from 'react';
+import { editProperty } from '@/app/actions/editProperty';
 
 const PropertyEditForm = ({ props }) => {
+  // Bind var to editProperty() function to be recalled on form action
+  const handleFormEdit = editProperty.bind(null, props._id);
+
   return (
-    <form>
+    <form action={handleFormEdit}>
       <h2 className='text-3xl text-center font-bold mb-6'>Edit Property</h2>
       <div className='mb-4'>
         <label htmlFor='type' className='block text-gray-700 font-bold mb-2'>
