@@ -13,3 +13,9 @@
     padding-right: 2rem !important;
   }
 }
+
+@layer components {
+  .map-container a {
+    @apply hidden;
+  }
+}

@@ -1,11 +1,9 @@
 'use client';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { setDefaults, fromAddress } from 'react-geocode';
 import Map, { Marker } from 'react-map-gl';
 import Spinner from '@/components/Spinner';
-import pin from '@/assets/images/pin.svg';
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const PropertyMap = ({ property }) => {
   const [loading, setLoading] = useState(true);
@@ -15,7 +13,7 @@ const PropertyMap = ({ property }) => {
   const [viewState, setViewState] = useState({
     latitude: 0,
     longitude: 0,
-    zoom: 10,
+    zoom: 13,
   });
 
   setDefaults({
@@ -37,8 +35,10 @@ const PropertyMap = ({ property }) => {
         }
 
         const { lat, lng } = response.results[0].geometry.location;
+
         setLatitude(lat);
         setLongitude(lng);
+
         setViewState({ ...viewState, latitude: lat, longitude: lng });
       } catch (err) {
         console.log(err);
@@ -53,9 +53,30 @@ const PropertyMap = ({ property }) => {
 
   if (loading) return <Spinner />;
 
-  if (error) return <div className='font-bold text-xl text-center'>Location Not Found</div>;
+  if (error)
+    return (
+      <div className='font-bold text-xl text-center'>Location Not Found</div>
+    );
 
-  return <div>Latitude: {latitude}, Longitude: {longitude}</div>;
+  return (
+    <div className='map-container w-full'>
+      {!loading && (
+        <Map
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+          initialViewState={viewState}
+          style={{ width: '100%', height: 500, borderRadius: '0.3rem' }}
+          mapStyle='mapbox://styles/mapbox/streets-v11'
+        >
+          <Marker
+            longitude={longitude}
+            latitude={latitude}
+            anchor='bottom'
+            color='red'
+          />
+        </Map>
+      )}
+    </div>
+  );
 };
 
 export default PropertyMap;
