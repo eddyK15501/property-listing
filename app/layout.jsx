@@ -1,6 +1,6 @@
 import '@/assets/styles/globals.css';
 import Favicon from '/public/favicon.ico';
-import Navbar from '../components/Navbar';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/Auth/AuthProvider';
 import { ToastContainer } from 'react-toastify';

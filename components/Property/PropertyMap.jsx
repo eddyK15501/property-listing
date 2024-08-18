@@ -1,6 +1,11 @@
 'use client';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { setDefaults, fromAddress } from 'react-geocode';
+import Map, { Marker } from 'react-map-gl';
+import Spinner from '@/components/Spinner';
+import pin from '@/assets/images/pin.svg';
+
 
 const PropertyMap = ({ property }) => {
   const [loading, setLoading] = useState(true);
@@ -46,9 +51,9 @@ const PropertyMap = ({ property }) => {
     fetchCoordinate();
   }, []);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Spinner />;
 
-  if (error) return <div className='text-xl'>Location Not Found</div>;
+  if (error) return <div className='font-bold text-xl text-center'>Location Not Found</div>;
 
   return <div>Latitude: {latitude}, Longitude: {longitude}</div>;
 };
