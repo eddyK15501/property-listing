@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  FaBed,
   FaBath,
   FaRulerCombined,
   FaMoneyBill,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
+import { IoIosBed } from 'react-icons/io';
 
 const PropertyCard = ({ property }) => {
   const displayRates = () => {
@@ -40,36 +40,30 @@ const PropertyCard = ({ property }) => {
           {displayRates()}
         </h3>
 
-        <div className='flex justify-center gap-4 text-black mb-4'>
-          <p>
-            <i className='fa-solid fa-bed'></i>
-            <FaBed className='md:hidden lg:inline' /> {property.beds}
-            <span className='font-medium md:hidden lg:inline'> Beds</span>
+        <div className='flex flex-wrap justify-center gap-4 text-black mb-4'>
+          <p className='flex items-center gap-1 font-bold'>
+            <IoIosBed className='lg:inline' size={20} /> {property.beds}
+            <span className='font-medium lg:inline'>{' '}Beds</span>
           </p>
-          <p>
-            <i className='fa-solid fa-bath'></i>
-            <FaBath className='md:hidden lg:inline' /> {property.baths}
-            <span className='font-medium md:hidden lg:inline'> Baths</span>
+          <p className='flex items-center gap-1 font-bold'>
+            <FaBath className='lg:inline' /> {property.baths}
+            <span className='font-medium lg:inline'>{' '}Baths</span>
           </p>
-          <p>
-            <i className='fa-solid fa-ruler-combined'></i>
-            <FaRulerCombined className='md:hidden lg:inline' />{' '}
+          <p className='flex items-center gap-1 font-bold'>
+            <FaRulerCombined className='lg:inline' />{' '}
             {property.square_feet}
-            <span className='font-medium md:hidden lg:inline'> sqft</span>
+            <span className='font-medium lg:inline'>{' '}sqft</span>
           </p>
         </div>
-
         <div className='flex justify-center gap-4 text-green-900 text-sm mb-4'>
-          <p>
-            <FaMoneyBill className='md:hidden lg:inline' /> Weekly
+          <p className='flex items-center gap-1'>
+            <FaMoneyBill className='lg:inline' /><span>Weekly</span>
           </p>
-          <p>
-            <FaMoneyBill className='md:hidden lg:inline' /> Monthly
+          <p className='flex items-center gap-1'>
+            <FaMoneyBill className='lg:inline' /><span>Monthly</span>
           </p>
         </div>
-
         <div className='border border-gray-100 mb-5'></div>
-
         <div className='flex flex-col lg:flex-row justify-between mb-4'>
           <div className='flex align-middle gap-2 mb-4 lg:mb-0'>
             <FaMapMarkerAlt className='text-orange-700 mt-1' />
