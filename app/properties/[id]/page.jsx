@@ -40,7 +40,11 @@ const PropertyDetailsPage = async ({ params }) => {
         <div className='container m-auto py-10 px-6'>
           <div className='grid grid-cols-1 md:grid-cols-70/28 w-full gap-6'>
             <PropertyDetails property={property} />
-            <aside className="space-y-4"></aside>
+            <aside className="space-y-4">
+              <BookmarkButton property={property} />
+              <ShareButton property={property} />
+              <PropertyContactForm property={property} />
+            </aside>
           </div>
         </div>
       </section>
