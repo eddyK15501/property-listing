@@ -4,6 +4,9 @@ import Property from '@/models/Property';
 import PropertyDetails from '@/components/Property/PropertyDetails';
 import PropertyBanner from '@/components/Property/PropertyBanner';
 import PropertyImages from '@/components/Property/PropertyImages';
+import PropertyContactForm from '@/components/Property/PropertyContactForm';
+import BookmarkButton from '@/components/Aside/BookmarkButton';
+import ShareButton from '@/components/Aside/ShareButton';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import convertToSerializable from '@/utils/convert';
 
@@ -37,6 +40,7 @@ const PropertyDetailsPage = async ({ params }) => {
         <div className='container m-auto py-10 px-6'>
           <div className='grid grid-cols-1 md:grid-cols-70/28 w-full gap-6'>
             <PropertyDetails property={property} />
+            <aside className="space-y-4"></aside>
           </div>
         </div>
       </section>
