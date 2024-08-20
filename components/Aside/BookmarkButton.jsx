@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { bookmarkProperty } from '@/app/actions/bookmarkProperty';
+import { bookmarkStatus } from '@/app/actions/bookmarkStatus';
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
@@ -10,7 +11,20 @@ const BookmarkButton = ({ property }) => {
   const userId = session?.user?.id;
 
   const [loading, setLoading] = useState(true);
-  const [isBookmarked, setIsBookmarked] = useState(true);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+
+    bookmarkStatus(property._id).then((res) => {
+      if (res.error) toast.error(res.error);
+      if (res.isBookmarked) setIsBookmarked(res.isBookmarked);
+      setLoading(false);
+    });
+  }, [bookmarkStatus, property._id, userId]);
 
   const handleBookmark = async () => {
     if (!userId) {
@@ -27,6 +41,10 @@ const BookmarkButton = ({ property }) => {
 
     toast.success(res.message);
   };
+
+  if (loading) {
+    return <p className='text-center'>Loading...</p>
+  }
 
   return !isBookmarked ? (
     <button

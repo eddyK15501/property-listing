@@ -3,7 +3,7 @@ import connectDB from '@/config/connection';
 import User from '@/models/User';
 import { sessionUser } from '@/utils/sessionUser';
 
-export async function bookmarkStatus(propertyId) {
+export async function bookmarkStatus(propId) {
   try {
     await connectDB();
     const getSessionUser = await sessionUser();
