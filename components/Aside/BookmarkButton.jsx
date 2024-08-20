@@ -1,33 +1,46 @@
 'use client';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from 'react';
 import { bookmarkProperty } from '@/app/actions/bookmarkProperty';
-import { FaRegBookmark } from 'react-icons/fa';
+import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
 
 const BookmarkButton = ({ property }) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
+
+  const [loading, setLoading] = useState(true);
+  const [isBookmarked, setIsBookmarked] = useState(true);
 
   const handleBookmark = async () => {
     if (!userId) {
       toast.error('Sign-in to bookmark a listing');
     }
 
-    const response = await bookmarkProperty(property._id);
+    const res = await bookmarkProperty(property._id);
 
-    if (response.error) {
-      return toast.error(response.error);
+    if (res.error) {
+      return toast.error(res.error);
     }
 
-    toast.success(response.message);
+    setIsBookmarked(res.isBookmarked);
+
+    toast.success(res.message);
   };
 
-  return (
+  return !isBookmarked ? (
     <button
-      className='bg-blue-500 hover:bg-blue-600 text-white font-medium w-full mr-4 py-2 px-4 rounded-full flex items-center justify-center'
+      className='bg-blue-500 hover:bg-blue-600 text-white font-medium w-full mr-4 py-2 px-4 rounded-xl flex items-center justify-center'
       onClick={handleBookmark}
     >
       <FaRegBookmark className='mr-2' /> Bookmark
+    </button>
+  ) : (
+    <button
+      className='bg-orange-500 hover:bg-orange-600 text-white font-medium w-full mr-4 py-2 px-4 rounded-xl flex items-center justify-center'
+      onClick={handleBookmark}
+    >
+      <FaBookmark className='mr-2' /> Remove Bookmark
     </button>
   );
 };
