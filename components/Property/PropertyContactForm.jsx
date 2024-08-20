@@ -2,13 +2,13 @@ import { RiMailSendLine } from 'react-icons/ri';
 
 const PropertyContactForm = ({ property }) => {
   return (
-    <div className='bg-white p-6 rounded-lg shadow-md'>
+    <div className='bg-white p-3 lg:p-6 rounded-lg shadow-md'>
       <h3 className='text-xl font-bold mb-6 text-center'>Contact Property Manager</h3>
       <form>
         <div className='mb-4'>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
-            for='name'
+            htmlFor='name'
           >
             Name:
           </label>
@@ -21,7 +21,7 @@ const PropertyContactForm = ({ property }) => {
           />
         </div>
         <div className='mb-4'>
-          <label className='block text-gray-700 text-sm font-bold mb-2' for='email'>
+          <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
             Email:
           </label>
           <input
@@ -35,7 +35,7 @@ const PropertyContactForm = ({ property }) => {
         <div className='mb-4'>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
-            for='phone'
+            htmlFor='phone'
           >
             Phone:
           </label>
@@ -49,7 +49,7 @@ const PropertyContactForm = ({ property }) => {
         <div className='mb-4'>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
-            for='message'
+            htmlFor='message'
           >
             Message:
           </label>
@@ -64,7 +64,7 @@ const PropertyContactForm = ({ property }) => {
             className='bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center mt-5'
             type='submit'
           >
-            <RiMailSendLine className='mr-2' /> Send Message
+            <RiMailSendLine className='mr-2 hidden lg:block' /> Send Message
           </button>
         </div>
       </form>
