@@ -7,7 +7,7 @@ const PropertiesPage = async () => {
   const properties = await Property.find({}).lean();
 
   return (
-    <section className='px-4 py-6'>
+    <section className='px-4 py-6 mb-24'>
       <div className='container-xl lg:container m-auto px-4 py-6'>
         {properties.length === 0 ? (
           <p>No properties found</p>

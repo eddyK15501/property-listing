@@ -12,7 +12,7 @@
     background-position: calc(100% - 0.75rem) center !important;
     padding-right: 2rem !important;
   }
-
+  
   textarea {
     resize: none;
   }

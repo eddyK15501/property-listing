@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function PropertyImages({ images }) {
   return (
-    <section className='bg-blue-50 px-6 py-4 md:px-24'>
+    <section className='bg-blue-50 px-6 py-4 pb-24 md:px-24'>
       <div className='container mx-auto'>
         {images.length === 1 ? (
           <Image

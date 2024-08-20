@@ -25,7 +25,7 @@ const ProfilePage = async () => {
   // console.log(convertedProperties);
 
   return (
-    <section className='bg-blue-50'>
+    <section className='bg-blue-50 pb-8'>
       <div className='container m-auto py-24 text-center md:text-start'>
         <div className='bg-white px-10 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0'>
           <h1 className='text-2xl font-semibold mb-4'>Your Profile</h1>

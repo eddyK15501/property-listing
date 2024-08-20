@@ -4,7 +4,7 @@ import HomeProperties from '@/components/Home/HomeProperties';
 
 const Homepage = () => {
   return (
-    <div>
+    <div className='mb-24'>
       <Hero />
       <InfoBoxes />
       <HomeProperties />
