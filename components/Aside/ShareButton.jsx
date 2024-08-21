@@ -4,17 +4,19 @@ import {
   TwitterShareButton,
   RedditShareButton,
   LinkedinShareButton,
+  WhatsappShareButton,
   FacebookIcon,
   TwitterIcon,
   RedditIcon,
   LinkedinIcon,
+  WhatsappIcon,
 } from 'react-share';
 
 const ShareButton = ({ property }) => {
   const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
 
   return (
-    <div className='bg-slate-50 rounded-lg shadow-md'>
+    <div className='bg-white rounded-lg shadow-md'>
       <h3 className='text-md font-bold text-center pt-2'>
         Share This Property:
       </h3>
@@ -26,9 +28,6 @@ const ShareButton = ({ property }) => {
         >
           <FacebookIcon size={35} borderRadius={10} />
         </FacebookShareButton>
-        <RedditShareButton url={shareUrl} title={property.name}>
-          <RedditIcon size={35} borderRadius={10} bgStyle={{ fill: 'red' }} />
-        </RedditShareButton>
         <TwitterShareButton
           url={shareUrl}
           title={property.name}
@@ -36,6 +35,9 @@ const ShareButton = ({ property }) => {
         >
           <TwitterIcon size={35} borderRadius={10} />
         </TwitterShareButton>
+        <RedditShareButton url={shareUrl} title={property.name}>
+          <RedditIcon size={35} borderRadius={10} bgStyle={{ fill: 'red' }} />
+        </RedditShareButton>
         <LinkedinShareButton
           url={shareUrl}
           title={property.name}
@@ -43,6 +45,9 @@ const ShareButton = ({ property }) => {
         >
           <LinkedinIcon size={35} borderRadius={10} />
         </LinkedinShareButton>
+        <WhatsappShareButton url={shareUrl} title={property.name}>
+          <WhatsappIcon size={35} borderRadius={10} />
+        </WhatsappShareButton>
       </div>
     </div>
   );
