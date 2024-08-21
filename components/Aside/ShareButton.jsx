@@ -38,6 +38,9 @@ const ShareButton = ({ property }) => {
         <RedditShareButton url={shareUrl} title={property.name}>
           <RedditIcon size={35} borderRadius={10} bgStyle={{ fill: 'red' }} />
         </RedditShareButton>
+        <WhatsappShareButton url={shareUrl} title={property.name}>
+          <WhatsappIcon size={35} borderRadius={10} />
+        </WhatsappShareButton>
         <LinkedinShareButton
           url={shareUrl}
           title={property.name}
@@ -45,9 +48,6 @@ const ShareButton = ({ property }) => {
         >
           <LinkedinIcon size={35} borderRadius={10} />
         </LinkedinShareButton>
-        <WhatsappShareButton url={shareUrl} title={property.name}>
-          <WhatsappIcon size={35} borderRadius={10} />
-        </WhatsappShareButton>
       </div>
     </div>
   );
