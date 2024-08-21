@@ -8,13 +8,15 @@ const override = {
 
 const Loading = () => {
   return (
-    <ClipLoader
-      color='#498dfc'
-      size={150}
-      cssOverride={override}
-      aria-label='Loading Spinner'
-      data-testid='loader'
-    />
+    <div className='min-h-[90vh]'>
+      <ClipLoader
+        color='#498dfc'
+        size={150}
+        cssOverride={override}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
   );
 };
 
