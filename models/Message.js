@@ -4,17 +4,17 @@ const MessageSchema = new mongoose.Schema(
   {
     sender: {
       required: true,
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
     recipient: {
       required: true,
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
     property: {
       required: true,
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Property',
     },
     name: {
@@ -38,6 +38,6 @@ const MessageSchema = new mongoose.Schema(
 );
 
 const Message =
-  mongoose.models.Message || mongoose.model('User', MessageSchema);
+  mongoose.models.Message || mongoose.model('Message', MessageSchema);
 
 export default Message;
