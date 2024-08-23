@@ -1,10 +1,10 @@
 'use client';
 import { useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormState } from 'react-dom';
 import { useSession } from 'next-auth/react';
-import { RiMailSendLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { addMessage } from '@/app/actions/addMessage';
+import SubmitMessageBtn from './SubmitMessageBtn';
 
 const PropertyContactForm = ({ property }) => {
   const { data: session } = useSession();
@@ -105,12 +105,7 @@ const PropertyContactForm = ({ property }) => {
             ></textarea>
           </div>
           <div>
-            <button
-              className='bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center mt-5'
-              type='submit'
-            >
-              <RiMailSendLine className='mr-2 hidden lg:block' /> Send Message
-            </button>
+            <SubmitMessageBtn />
           </div>
         </form>
       </div>
