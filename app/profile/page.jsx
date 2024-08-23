@@ -49,7 +49,9 @@ const ProfilePage = async () => {
             </div>
             <div className='md:w-3/4 md:pl-4'>
               <h2 className='text-xl font-semibold mb-4'>Listings:</h2>
-              <ProfileProperties userProperties={convertedProperties} />
+              {convertedProperties.length === 0 ? <p className='text-center'>No Properties Listed.</p> : (
+                <ProfileProperties userProperties={convertedProperties} />
+              )}
             </div>
           </div>
         </div>
