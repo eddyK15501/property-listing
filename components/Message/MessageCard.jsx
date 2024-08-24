@@ -1,6 +1,29 @@
+'use client';
+import { useState } from 'react';
+import { messageRead } from '@/app/actions/messageRead';
+import { toast } from 'react-toastify';
+
 const MessageCard = ({ message }) => {
+  const [markRead, setMarkRead] = useState(message.read);
+
+  const handleReadClick = async () => {
+    const read = await messageRead(message._id);
+
+    setMarkRead(read);
+    toast.success(`Marked as ${read ? 'read' : 'new'}`);
+  };
+
   return (
-    <div className='relative bg-white p-4 rounded-md shadow-md border border-gray-200'>
+    <div
+      className={`relative bg-white p-4 rounded-md shadow-md border border-gray-200 ${
+        markRead ? '!bg-blue-100' : ''
+      }`}
+    >
+      {!markRead && (
+        <p className='hidden absolute top-3 right-5 text-green-500 underline md:block'>
+          New Message
+        </p>
+      )}
       <h2 className='text-xl mb-4'>
         <span className='font-bold'>Property Request:</span>{' '}
         {message.property.name}
@@ -26,8 +49,11 @@ const MessageCard = ({ message }) => {
           </li>
         </ul>
         <div className='self-end'>
-          <button className='w-[130px] mt-4 mr-3 bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-400'>
-            Mark As Read
+          <button
+            onClick={handleReadClick}
+            className='w-[130px] mt-4 mr-3 bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-400'
+          >
+            {markRead ? 'Mark As New' : 'Mark As Read'}
           </button>
           <button className='w-[130px] mt-4 bg-rose-500 text-white py-1 px-3 rounded-md hover:bg-rose-400'>
             Delete
