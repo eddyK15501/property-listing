@@ -32,7 +32,7 @@ const MessagesPage = async () => {
   });
 
   return (
-    <section className='bg-blue-50 pb-6'>
+    <section className='bg-blue-50 pb-6 min-h-[80vh]'>
       <div className='container m-auto py-24 max-w-6xl'>
         <div className='bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0'>
           <h1 className='text-2xl font-bold mb-6'>Your Messages</h1>

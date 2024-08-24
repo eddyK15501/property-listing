@@ -23,7 +23,7 @@ export async function messageDelete(messageId) {
 
     await message.deleteOne();
 
-    revalidatePath('/');
+    revalidatePath('/messages', 'page');
   } catch (err) {
     return new Response(err, { status: 500 });
   }
