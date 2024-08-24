@@ -31,6 +31,6 @@ export async function messageRead(messageId) {
 
     return message.read;
   } catch (err) {
-    return { error: err.message };
+    return new Response(err, { status: 500 });
   }
 }

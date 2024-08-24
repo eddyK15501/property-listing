@@ -1,9 +1,10 @@
 'use server';
 import connectDB from '@/config/connection';
-import User from '@/models/User';
+import Message from '@/models/Message';
 import { sessionUser } from '@/utils/sessionUser';
+import { revalidatePath } from 'next/cache';
 
-export async function bookmarkStatus(propId) {
+export async function messageDelete(messageId) {
   try {
     await connectDB();
     const getSessionUser = await sessionUser();
@@ -13,15 +14,16 @@ export async function bookmarkStatus(propId) {
     }
 
     const { userId } = getSessionUser;
-    const user = await User.findById(userId);
 
-    if (!user) {
-      throw new Error('User not found');
+    const message = await Message.findById(messageId);
+
+    if (message.recipient.toString() !== userId) {
+      throw new Error('Unauthorized');
     }
 
-    let isBookmarked = user.bookmarks.includes(propId);
+    await message.deleteOne();
 
-    return { isBookmarked };
+    revalidatePath('/');
   } catch (err) {
     return new Response(err, { status: 500 });
   }
