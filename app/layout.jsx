@@ -1,7 +1,7 @@
 import '@/assets/styles/globals.css';
 import Favicon from '/public/favicon.ico';
 import { GlobalProvider } from '@/context/GlobalContext';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/Auth/AuthProvider';
 import { ToastContainer } from 'react-toastify';
