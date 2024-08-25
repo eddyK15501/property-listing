@@ -1,5 +1,6 @@
 import '@/assets/styles/globals.css';
 import Favicon from '/public/favicon.ico';
+import { GlobalProvider } from '@/context/GlobalContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/Auth/AuthProvider';
@@ -16,14 +17,16 @@ export const metadata = {
 const MainLayout = ({ children }) => {
   return (
     <AuthProvider>
-      <html lang='en'>
-        <body>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ToastContainer />
-        </body>
-      </html>
+      <GlobalProvider>
+        <html lang='en'>
+          <body>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <ToastContainer />
+          </body>
+        </html>
+      </GlobalProvider>
     </AuthProvider>
   );
 };
