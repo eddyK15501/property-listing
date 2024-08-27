@@ -2,9 +2,14 @@ import PropertyCard from '@/components/Property/PropertyCard';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
 
-const PropertiesPage = async () => {
+const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
   await connectDB();
-  const properties = await Property.find({}).lean();
+
+  // Logic for pagination
+  const skip = (page - 1) * size;
+  const total = await Property.countDocuments({});
+
+  const properties = await Property.find({}).skip(skip).limit(size);
 
   return (
     <section className='px-4 py-6 mb-24'>
