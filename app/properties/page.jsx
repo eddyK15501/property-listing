@@ -1,6 +1,7 @@
 import PropertyCard from '@/components/Property/PropertyCard';
 import connectDB from '@/config/connection';
 import Property from '@/models/Property';
+import Pagination from '@/components/Pagination';
 
 const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
   await connectDB();
@@ -12,7 +13,7 @@ const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
   const properties = await Property.find({}).skip(skip).limit(size);
 
   return (
-    <section className='px-4 py-6 mb-24'>
+    <section className='px-4 py-6'>
       <div className='container-xl lg:container m-auto px-4 py-6'>
         {properties.length === 0 ? (
           <p>No properties found</p>
@@ -23,6 +24,7 @@ const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
             ))}
           </div>
         )}
+        <Pagination page={parseInt(page)} size={parseInt(size)} total={total} />
       </div>
     </section>
   );
