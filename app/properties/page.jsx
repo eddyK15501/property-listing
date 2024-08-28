@@ -3,7 +3,7 @@ import connectDB from '@/config/connection';
 import Property from '@/models/Property';
 import Pagination from '@/components/Pagination';
 
-const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
+const PropertiesPage = async ({ searchParams: { page = 1, size = 9 } }) => {
   await connectDB();
 
   // Logic for pagination
@@ -13,7 +13,7 @@ const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
   const properties = await Property.find({}).skip(skip).limit(size);
 
   return (
-    <section className='px-4 py-6'>
+    <section className='px-4 pt-6 pb-12'>
       <div className='container-xl lg:container m-auto px-4 py-6'>
         {properties.length === 0 ? (
           <p>No properties found</p>
@@ -24,7 +24,13 @@ const PropertiesPage = async ({ searchParams: { page = 1, size = 3 } }) => {
             ))}
           </div>
         )}
-        <Pagination page={parseInt(page)} size={parseInt(size)} total={total} />
+        {total > size && (
+          <Pagination
+            page={parseInt(page)}
+            size={parseInt(size)}
+            total={total}
+          />
+        )}
       </div>
     </section>
   );
