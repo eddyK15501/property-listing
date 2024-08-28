@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/Auth/AuthProvider';
 import { ToastContainer } from 'react-toastify';
+import 'photoswipe/dist/photoswipe.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
