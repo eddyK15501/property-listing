@@ -95,20 +95,20 @@ const Navbar = () => {
               <div className='flex space-x-2'>
                 <Link
                   href='/'
-                  className='text-white hover:text-gray-300 rounded-md px-3 py-2'
+                  className='text-white hover:text-gray-400 rounded-md px-3 py-2'
                 >
                   Home
                 </Link>
                 <Link
                   href='/properties'
-                  className='text-white hover:text-gray-300 rounded-md px-3 py-2'
+                  className='text-white hover:text-gray-400 rounded-md px-3 py-2'
                 >
                   Properties
                 </Link>
                 {session && (
                   <Link
                     href='/properties/add'
-                    className='text-white hover:text-gray-300 rounded-md px-3 py-2'
+                    className='text-white hover:text-gray-400 rounded-md px-3 py-2'
                   >
                     Add Property
                   </Link>
@@ -235,20 +235,20 @@ const Navbar = () => {
           <div className='text-center space-y-1 px-2 pb-3 pt-2'>
             <Link
               href='/'
-              className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
+              className='text-gray-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
             >
               Home
             </Link>
             <Link
               href='/properties'
-              className='text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
+              className='text-gray-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
             >
               Properties
             </Link>
             {session && (
               <Link
                 href='/properties/add'
-                className='mx-auto text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
+                className='mx-auto text-gray-400 hover:text-white block rounded-md px-3 py-2 text-base font-medium'
               >
                 Add Property
               </Link>

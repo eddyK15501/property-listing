@@ -20,7 +20,7 @@ const HomeProperties = async () => {
           {mostRecent.length === 0 ? (
             <p>No properties found</p>
           ) : (
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {mostRecent.map((property) => (
                 <PropertyCard key={property._id} property={property} />
               ))}
@@ -31,7 +31,7 @@ const HomeProperties = async () => {
       <section className='mx-auto max-w-lg my-4 px-14'>
         <Link
           href='/properties'
-          className='w-[350px] mx-auto block bg-blue-500 text-white text-center text-md py-3.5 px-6 rounded-full hover:bg-blue-400'
+          className='w-[250px] md:w-[350px] mx-auto block bg-blue-500 text-white text-center text-md py-3.5 px-6 rounded-full hover:bg-blue-400'
         >
           View All Properties
         </Link>

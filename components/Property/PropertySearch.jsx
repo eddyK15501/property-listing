@@ -31,7 +31,7 @@ const PropertySearch = () => {
         <input
           type='text'
           id='location'
-          placeholder='Enter Location'
+          placeholder='Enter Location (City, State, Zipcode, etc.)'
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           className='w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500'
