@@ -4,7 +4,7 @@
 * [Click Here](https://property-listing-pink.vercel.app/)
 
 ## Description
-Real estate rental application built with Next.js.
+Real estate rental application build with Next.js.
 
 * Next.js
 * Next-Auth
